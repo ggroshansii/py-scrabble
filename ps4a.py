@@ -59,16 +59,13 @@ def getFrequencyDict(sequence):
 #
 def getWordScore(word, n):
 
-    WORD_LIST = loadWords()
     word_score = 0
 
-    if word in WORD_LIST:
-        for letter in word:
-            word_score += SCRABBLE_LETTER_VALUES[letter]
-        word_score *= len(word)
-    else:
-        print("not in there")
-    
+    for letter in word:
+        word_score += SCRABBLE_LETTER_VALUES[letter]
+        
+    word_score *= len(word)
+
     #only have this run on first turn
     if len(word) == n:
         word_score += 50
@@ -90,8 +87,6 @@ def getWordScore(word, n):
     """
     # TO DO ... <-- Remove this comment when you code this function
 
-print(getWordScore("aarrghh", 7))
-
 #
 # Problem #2: Make sure you understand how this function works and what it does!
 #
@@ -109,8 +104,8 @@ def displayHand(hand):
     """
     for letter in hand.keys():
         for j in range(hand[letter]):
-            #  print(letter,end=" ")       # print all on the same line
-            print()                             # print an empty line
+            print(letter,end=" ")       # print all on the same line
+    print()                             # print an empty line
 
 #
 # Problem #2: Make sure you understand how this function works and what it does!
@@ -144,6 +139,16 @@ def dealHand(n):
 # Problem #2: Update a hand by removing letters
 #
 def updateHand(hand, word):
+
+    updated_hand = {}
+    updated_hand.update(hand)
+
+    for letter in word:
+        if letter in updated_hand:
+            updated_hand[letter] = updated_hand[letter] - 1 
+    
+    return updated_hand
+
     """
     Assumes that 'hand' has all the letters in word.
     In other words, this assumes that however many times
@@ -161,7 +166,7 @@ def updateHand(hand, word):
     """
     # TO DO ... <-- Remove this comment when you code this function
 
-
+print(updateHand({"a": 2, "h": 1}, 'ha'))
 
 #
 # Problem #3: Test word validity
