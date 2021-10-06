@@ -237,7 +237,7 @@ def playHand(hand, wordList, n):
         # Display the hand
         displayHand(hand)
         # Ask user for input
-        user_input = input("please enter a word: ")
+        user_input = input("please enter a word or '.' to exit: ")
 
         # If the input is a single period:
         if user_input == ".":
